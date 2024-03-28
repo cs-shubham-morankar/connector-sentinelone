@@ -968,6 +968,7 @@ def get_alerts(config, params):
         return response
     error_handling("Failed to get alerts.", response.text)
 
+
 def custom_endpoint(config, params):
     headers = _get_headers(config)
     endpoint = params.get('endpoint')

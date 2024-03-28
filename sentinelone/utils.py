@@ -111,14 +111,22 @@ def _generate_headers(token=None):
 
 
 def _validate_credential(config):
-    url, verify_ssl = _build_url(config,
-                                 method_name='web/api/' + config.get('api_version') + '/users/login/by-api-token')
+    if config.get('user') == 'Console Users':
+        url, verify_ssl = _build_url(config,
+                                     method_name='web/api/' + config.get('api_version') + '/users/login/by-api-token')
+        request_body = _create_login_request_body(config)
+    else:
+        url, verify_ssl = _build_url(config,
+                                     method_name='web/api/' + config.get('api_version') + '/users/viewer-auth-check')
 
-    request_body = _create_login_request_body(config)
     headers = {'content-type': 'application/json'}
     try:
-        res = post(url, data=json.dumps(request_body), headers=headers, timeout=12, verify=verify_ssl)
-        return res
+        if config.get('user') == 'Console Users':
+            res = post(url, data=json.dumps(request_body), headers=headers, timeout=12, verify=verify_ssl)
+            return res
+        else:
+            res = get(url, headers=headers, timeout=12, verify=verify_ssl)
+            return res
     except exceptions.RequestException as e:
         raise ConnectorError("Invalid URI or credentials")
 
