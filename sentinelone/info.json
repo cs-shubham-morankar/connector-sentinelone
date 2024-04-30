@@ -38,20 +38,16 @@
           "Service Users"
         ],
         "value": "Console Users",
-        "tooltip": "Select the account user to which you will connect and perform the automated operations.",
-        "onchange": {
-          "Console Users": [
-            {
-              "title": "API Token",
-              "description": "Specify the API token that is required to access the SentinelOne REST endpoint.\nImportant: The minimum role required for the user to use the API endpoint is \"Site Viewer\".",
-              "required": true,
-              "editable": true,
-              "visible": true,
-              "type": "password",
-              "name": "apiToken"
-            }
-          ]
-        }
+        "tooltip": "Select the account user to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "API Token",
+        "description": "Specify the API token that is required to access the SentinelOne REST endpoint.\nImportant: The minimum role required for the user to use the API endpoint is \"Site Viewer\".",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "apiToken"
       },
       {
         "title": "API Version",
